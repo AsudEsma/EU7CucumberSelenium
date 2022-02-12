@@ -1,63 +1,29 @@
 package com.vytrack.pages;
 
-import com.vytrack.utilities.ConfigurationReader;
 import com.vytrack.utilities.Driver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
+
     public LoginPage(){
-        PageFactory.initElements(Driver.get(),this);
+        PageFactory.initElements(Driver.get(), this);
     }
 
-    //driver.findElement(By.id("prependedInput"));
+    @FindBy(id="prependedInput")
+    public WebElement userName;
 
-    // OR case
-    @FindAll({
-            @FindBy(id = "prependedInput"),
-            @FindBy(name ="_username")
-    })
+    @FindBy(id="prependedInput2")
+    public WebElement password;
 
-    // AND case
-/*    @FindBy({
-            @FindBy(id = "prependedInput"),
-            @FindBy(name ="_username")
-    })                                      */
+    @FindBy(name = "_submit")
+    public WebElement submit;
 
-    public WebElement usernameInput;
-
-    @FindBy(id = "prependedInput2")
-    public WebElement passwordInput;
-
-    //driver.findElement(By.id("_submit"));
-    @FindBy(id = "_submit")
-    public WebElement loginBtn;
-
-    public void login(String username,String password) {
-        usernameInput.sendKeys(username);
-        passwordInput.sendKeys(password);
-        loginBtn.click();
-    }
-
-    public void loginAsStoreManager() {
-
-        String username = ConfigurationReader.get("storemanager_username");
-        String password = ConfigurationReader.get("storemanager_password");
-
-        usernameInput.sendKeys(username);
-        passwordInput.sendKeys(password);
-        loginBtn.click();
-    }
-
-    public void loginAsDriver() {
-
-        String username = ConfigurationReader.get("driver_username");
-        String password = ConfigurationReader.get("driver_password");
-
-        usernameInput.sendKeys(username);
-        passwordInput.sendKeys(password);
-        loginBtn.click();
+    public void login(String userNameStr, String passwordStr) {
+        userName.sendKeys(userNameStr);
+        password.sendKeys(passwordStr);
+        submit.click();
+        // verification that we logged
     }
 }

@@ -11,7 +11,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class BasePage {
+import java.util.List;
+
+public abstract class  BasePage {
+
+    @FindBy(css = "span.title-level-1")
+    public List<WebElement> menuOptions;
 
     @FindBy(css = "div[class='loader-mask shown']")
     @CacheLookup
@@ -70,8 +75,8 @@ public abstract class BasePage {
     }
     public void goToMyUser(){
         waitUntilLoaderScreenDisappear();
-        BrowserUtils.waitForClickability(userName, 5).click();
-        BrowserUtils.waitForClickability(myUser, 5).click();
+        BrowserUtils.waitForClickablility(userName, 5).click();
+        BrowserUtils.waitForClickablility(myUser, 5).click();
 
     }
 
@@ -85,12 +90,9 @@ public abstract class BasePage {
      */
     public void navigateToModule(String tab, String module) {
         String tabLocator = "//span[normalize-space()='" + tab + "' and contains(@class, 'title title-level-1')]";
-        //     String moduleLocator2 = "//span[@class='title title-level-1' and contains(text(),'"+ module + "')]";
-
         String moduleLocator = "//span[normalize-space()='" + module + "' and contains(@class, 'title title-level-2')]";
-        //     String moduleLocator2 = "//span[@class='title title-level-2' and contains(text(),'"+ module + "')]";
         try {
-            BrowserUtils.waitForClickability(By.xpath(tabLocator), 5);
+            BrowserUtils.waitForClickablility(By.xpath(tabLocator), 5);
             WebElement tabElement = Driver.get().findElement(By.xpath(tabLocator));
             new Actions(Driver.get()).moveToElement(tabElement).pause(200).doubleClick(tabElement).build().perform();
         } catch (Exception e) {
@@ -102,9 +104,8 @@ public abstract class BasePage {
             BrowserUtils.scrollToElement(Driver.get().findElement(By.xpath(moduleLocator)));
             Driver.get().findElement(By.xpath(moduleLocator)).click();
         } catch (Exception e) {
+            BrowserUtils.waitForStaleElement(Driver.get().findElement(By.xpath(moduleLocator)));
             BrowserUtils.clickWithTimeOut(Driver.get().findElement(By.xpath(moduleLocator)),  5);
-
         }
     }
-
 }

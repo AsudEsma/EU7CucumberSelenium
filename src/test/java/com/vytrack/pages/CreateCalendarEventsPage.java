@@ -17,7 +17,6 @@ public class CreateCalendarEventsPage extends BasePage {
 
     @FindBy(css = "[id^='recurrence-repeats-view']")
     public WebElement repeatOptions;
-
     @FindBy(className = "select2-chosen")
     public WebElement selectedOwner;
 
@@ -53,4 +52,5 @@ public class CreateCalendarEventsPage extends BasePage {
     public Select repeatOptionsList(){
         return new Select(repeatOptions);
     }
+
 }
