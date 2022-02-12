@@ -41,7 +41,7 @@ public class NavigationStepDefs {
     public void title_should_be_Calendars() {
         System.out.println("Expected and Actual title are matching");
     }
-    
+
     @When("the user navigates to {string} {string}")
     public void the_user_navigates_to(String tab, String module) {
         new DashboardPage().navigateToModule(tab,module);
