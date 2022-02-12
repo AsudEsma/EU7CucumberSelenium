@@ -14,4 +14,16 @@ public class Hooks {
     public void tearDown() {
         System.out.println("\tThis is coming from AFTER");
     }
+
+    @Before("@db")
+    public void setupDB() {
+        System.out.println("\tThis is coming from BEFORE");
+        System.out.println("\tConnecting to database...");
+    }
+
+    @After("@db")
+    public void tearDownDB() {
+        System.out.println("\tThis is coming from AFTER");
+        System.out.println("\tReconnecting from database...");
+    }
 }
