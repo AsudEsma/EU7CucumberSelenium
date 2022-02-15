@@ -26,7 +26,6 @@ Feature: Users should be able to login
     Then the user should be able to login
     And the title should be this
 
-  @wip
   Scenario: login as a given user
     Given the user is on the login page
     When the user logs in using following credentials
