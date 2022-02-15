@@ -42,4 +42,18 @@ public class NavigationStepDefs {
         System.out.println("Expected and Actual title are matching");
     }
 
+    @When("the user navigates to {string} {string}")
+    public void the_user_navigates_to(String tab, String module) {
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.waitUntilLoaderScreenDisappear();
+        dashboardPage.navigateToModule(tab,module);
+    }
+
+    @Then("the default page number should be {int}")
+    public void the_default_page_number_should_be(Integer expectedNumber) {
+        BrowserUtils.waitFor(3);
+        ContactsPage contactsPage = new ContactsPage();
+        Integer actualNumber = Integer.parseInt(contactsPage.pageNumber.getAttribute("value"));
+        Assert.assertEquals(expectedNumber,actualNumber);
+    }
 }
