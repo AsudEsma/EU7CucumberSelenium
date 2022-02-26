@@ -26,6 +26,7 @@ Feature: Users should be able to login
     Then the user should be able to login
     And the title should be this
 
+
   Scenario: login as a given user
     Given the user is on the login page
     When the user logs in using following credentials
@@ -35,7 +36,7 @@ Feature: Users should be able to login
       | lastname  | Doe         |
     Then the user should be able to login
 
-
+  @wip
   Scenario Outline: login as a given user <user>
     Given the user is on the login page
     When the user logs in using following credentials
@@ -46,6 +47,6 @@ Feature: Users should be able to login
     Then the user should be able to login
 
     Examples:
-      | user           | firstName | lastName  |
-      | user10         | Brenden   | Schneider |
-      | storemanager85 | Stephan   | Haley     |
+      | user           | firstName | lastName |
+      | user10         | John      | Doe      |
+      | storemanager85 | John      | Doe      |
